@@ -1,5 +1,6 @@
 from tkinter import *
 import random
+import tkinter.messagebox as tmsg
 
 root = Tk()
 
@@ -30,6 +31,7 @@ def generate():
         if len<4:
             staVar.set('weak')
             passvar.set('to weak!')
+            tmsg.askretrycancel('weak pass','Youe pass strength is too weak!\ntry a strong one.')
         elif 3<len<7:
             staVar.set('weak')
             passvar.set(pass3)
@@ -51,8 +53,16 @@ def generate():
 
 def save():
     orgn = orgVar.get()
-    with open('pass-gen.txt','a') as f:
-        f.write(f'{orgn} - {passvar.get()}\n')
+    strength = staVar.get()
+    if strength == 'weak':
+        value = tmsg.askyesno('weak pass','Your password strength is weak!\nAre sure to set this password?')
+        if value == True:
+            with open('pass-gen.txt','a') as f:
+                f.write(f'{orgn} - {passvar.get()}\n')
+    else:
+        with open('pass-gen.txt','a') as f:
+            f.write(f'{orgn} - {passvar.get()}\n')
+    svaepass.config(state=DISABLED)
 
 Label(root,text='Pass Generator',font='arial 20 bold',padx=5).pack(pady=20)
 frm1 = Frame(root,bg='orange')
