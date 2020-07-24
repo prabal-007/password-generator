@@ -27,7 +27,10 @@ def generate():
         pass4 = ''.join(random.sample(raw4,len))
         pass5 = ''.join(random.sample(raw5,len))
         strength = staVar.get()
-        if len < 7:
+        if len<4:
+            staVar.set('weak')
+            passvar.set('to weak!')
+        elif 3<len<7:
             staVar.set('weak')
             print(strength)
             passvar.set(pass3)
@@ -45,10 +48,7 @@ def generate():
             passvar.set('Error')
     except Exception as e:
         passvar.set('Error')
-    # passlist = [pass1,pass2,pass3]
-    # password = random.choice(passlist)
-    # passvar.set(password)
-    # strength(password)
+
 
 Label(root,text='Pass Generator',font='arial 20 bold',padx=5).pack(pady=20)
 frm1 = Frame(root,bg='orange')
