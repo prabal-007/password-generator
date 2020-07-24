@@ -49,6 +49,7 @@ def generate():
             passvar.set('Error')
         svaepass.config(state=ACTIVE)
     except Exception as e:
+        tmsg.showerror('error','Please enter the length!')
         passvar.set('Error')
 
 def save():
@@ -86,10 +87,17 @@ def hel():
     cont.pack(pady='20')
     root2.mainloop()
 def exi():
-    value = tmsg.askyesno('Exit','You want to Exit?')
-    if value == True:
-        exit()
-    else: pass
+    if svaepass(state=DISABLED):
+        val1 = tmsg.askyesnocancel('Error','You have not saved your password,\ndo you want to save it?')
+        if val1 == 'Yes':
+            save()
+        elif val1 == 'No':
+            exit()
+    else:
+        value = tmsg.askyesno('Exit','You want to Exit?')
+        if value == True:
+            exit()
+        else: pass
 Label(root,text='Pass Generator',font='arial 20 bold',padx=5).pack(pady=20)
 frm1 = Frame(root,bg='orange')
 Label(frm1,text='Org - ',font='arial 10 bold', bg='orange').pack(side=LEFT, padx=15)
