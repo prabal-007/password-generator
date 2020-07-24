@@ -32,7 +32,6 @@ def generate():
             passvar.set('to weak!')
         elif 3<len<7:
             staVar.set('weak')
-            print(strength)
             passvar.set(pass3)
         elif 6<len<11:
             staVar.set('good')
@@ -46,9 +45,14 @@ def generate():
             passvar.set(pass1)
         else:
             passvar.set('Error')
+        svaepass.config(state=ACTIVE)
     except Exception as e:
         passvar.set('Error')
 
+def save():
+    orgn = orgVar.get()
+    with open('pass-gen.txt','a') as f:
+        f.write(f'{orgn} - {passvar.get()}\n')
 
 Label(root,text='Pass Generator',font='arial 20 bold',padx=5).pack(pady=20)
 frm1 = Frame(root,bg='orange')
@@ -61,17 +65,22 @@ paslen = Label(frm2,text='Pass Length - ', font='arial 10 bold', bg='orange').pa
 lenVer = StringVar()
 Entry(frm2,textvariable=lenVer,font='arial 10', relief=SUNKEN, width='8').pack(side=LEFT,padx=5)
 frm2.pack()
-Label(root,text='*pass length must be in range 4-23.', fg='red', bg='orange').pack()
+Label(root,text='*pass length must be in range 4-22.', fg='red', bg='orange').pack()
 Button(root,text='Generate',font='arial 10 bold',pady='2', relief=RAISED,activebackground='gold', command=generate).pack(pady=5)
 
 passvar = StringVar()
-Entry(root,textvariable=passvar, font='arial 15', relief=SUNKEN, state=DISABLED).pack(pady=10)
+Entry(root,textvariable=passvar, font='arial 15', relief=SUNKEN,width='25', state=DISABLED).pack(pady=10)
 frm3= Frame(root,bg='orange')
 Label(frm3,text='Strength : ', font='helvetica 10',bg='orange').pack(side=LEFT)
 staVar = StringVar()
-# staVar.set('weak')
 strengthlist = ['weak','good','strong','very strong']
 for i in range (len(strengthlist)):
     radio =Radiobutton(frm3,text=strengthlist[i], variable=staVar,state=DISABLED, value=strengthlist[i],padx='5',bg='orange').pack(side=LEFT)
 frm3.pack()
+svaepass = Button(root,text='Save', font='aral 10 bold', relief=RAISED, activebackground='gold', command=save, state=DISABLED)
+svaepass.pack(pady=5)
+endfrm = Frame(root,bg='gold')
+Label(endfrm,text='By Prabal Gupta', bg='gold').pack(side=RIGHT)
+Label(endfrm,text='©by sta.PG.0.3').pack(side=LEFT)
+endfrm.pack(side=BOTTOM, fill=X)
 root.mainloop()
