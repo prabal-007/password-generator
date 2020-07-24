@@ -15,28 +15,28 @@ def generate():
     raw5 = low+symbole
     
     try:
-        len = int(lenVer.get())
-        pass1 = ''.join(random.sample(raw1,len))
-        pass2 = ''.join(random.sample(raw2,len))
-        pass3 = ''.join(random.sample(raw3,len))
-        pass4 = ''.join(random.sample(raw4,len))
-        pass5 = ''.join(random.sample(raw5,len))
+        lent = int(lenVer.get())
+        pass1 = ''.join(random.sample(raw1,lent))
+        pass2 = ''.join(random.sample(raw2,lent))
+        pass3 = ''.join(random.sample(raw3,lent))
+        pass4 = ''.join(random.sample(raw4,lent))
+        pass5 = ''.join(random.sample(raw5,lent))
         strength = staVar.get()
-        if len<4:
+        if lent<4:
             staVar.set('weak')
             passvar.set('to weak!')
             tmsg.askretrycancel('weak pass','Youe pass strength is too weak!\ntry a strong one.')
-        elif 3<len<7:
+        elif 3<lent<7:
             staVar.set('weak')
             passvar.set(pass3)
-        elif 6<len<11:
+        elif 6<lent<11:
             staVar.set('good')
             lis = [pass4,pass5]
             passvar.set(random.choice(lis))
-        elif 10<len<16:
+        elif 10<lent<16:
             staVar.set('strong')
             passvar.set(pass2)
-        elif 15<len<23:
+        elif 15<lent<23:
             staVar.set('very strong')
             passvar.set(pass1)
         else:
@@ -49,10 +49,13 @@ def generate():
 def save():
     orgn = orgVar.get()
     strength = staVar.get()
+    lent = int(lenVer.get())
     if orgn == '':
         tmsg.showerror('org field','Enter name of organisation to save pass.')
     else:
-        if strength == 'weak':
+        if lent <5:
+            tmsg.showerror('weak pass',"can't save,Your password strength is weak!")
+        elif strength == 'weak':
             value = tmsg.askyesno('weak pass','Your password strength is weak!\nAre sure to set this password?')
             if value == True:
                 with open('pass-gen.txt','a') as f:
