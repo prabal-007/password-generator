@@ -43,9 +43,8 @@ def generate():
             passvar.set('Error')
         svaepass.config(state=ACTIVE)
     except Exception as e:
-        tmsg.showerror('error','Please enter the length!')
+        tmsg.showerror('Error','Please enter revalent password length!')
         passvar.set('Error')
-
 def save():
     orgn = orgVar.get()
     strength = staVar.get()
@@ -105,7 +104,6 @@ def exi():
             exit()
     else:
         value = tmsg.askyesno('Exit','You want to Exit?')
-        print(value)
         if value == True:
             exit()
         else: pass
