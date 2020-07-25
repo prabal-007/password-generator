@@ -66,25 +66,32 @@ def save():
         svaepass.config(state=DISABLED)
 def About():
     root3=Tk()
+    def exi():
+        root3.destroy()
     root3.geometry('400x400')
     Label(root3, text='by Prabal Gupta', anchor='e', fg='white', bg='black').pack(side=BOTTOM, fil=X)
     root3.configure(background='orange')
     root3.title('Password Generator- About')
-    head=Label(root3, text='About', font='arial 18 bold')
+    head=Label(root3, text='About',bg='orange', font='arial 18 bold')
     head.pack(pady='20')
     cont=Label(root3, text='Name - Password Generator\nVersion - str.PG.0.3\nDeveloper - Prabal Gupta\ngithub - https://github.com/prabal-007', font='arial 12 bold',padx='5',pady='5')
     cont.pack(pady='20')
+    Button(root3,text='Exit',bg='gray',font='arial 10 bold',command=exi).pack()
     root3.mainloop()
 def hel():
     root2=Tk()
+    def exi():
+        root2.destroy()
     root2.geometry('500x400')
     root2.configure(background='orange')
     Label(root2, text='by Prabal Gupta', anchor='e', fg='white', bg='black').pack(side=BOTTOM, fil=X)
     root2.title("PassGenerator- Help")
-    head=Label(root2, text='HELP', font='arial 18 bold')
+    head=Label(root2, text='HELP',bg='orange', font='arial 18 bold')
     head.pack(pady='20')
     cont=Label(root2, text='Step-0. Enter organisation for which you want\n to generate password for.\nStep-1. Enter length of your password.\nstep-2. click Generate botton\nStep-3. Click "Save" button.\n(All the saved passwords are saved in pass-gene.txt file.\nExample : org_name - password)', font='arial 12 bold',padx='5',pady='5')
     cont.pack(pady='20')
+    Button(root2,text='Exit',bg='gray',font='arial 10 bold',command=exi).pack()
+
     root2.mainloop()
 def exi():
     # exit()
