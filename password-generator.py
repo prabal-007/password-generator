@@ -83,18 +83,22 @@ def hel():
     root2.title("PassGenerator- Help")
     head=Label(root2, text='HELP', font='arial 18 bold')
     head.pack(pady='20')
-    cont=Label(root2, text='Step-0. Enter organisation for which you want\n to generate password for.\nStep-2. Enter length of ypor password.\nstep-2. click Generate botton\nStep-3. Click "Save" button.\n(All the saved passwords are kept in pass-gene.txt file.\nExample : org_name - password)', font='arial 12 bold',padx='5',pady='5')
+    cont=Label(root2, text='Step-0. Enter organisation for which you want\n to generate password for.\nStep-1. Enter length of your password.\nstep-2. click Generate botton\nStep-3. Click "Save" button.\n(All the saved passwords are saved in pass-gene.txt file.\nExample : org_name - password)', font='arial 12 bold',padx='5',pady='5')
     cont.pack(pady='20')
     root2.mainloop()
 def exi():
-    if svaepass(state=ACTIVE):
+    # exit()
+    saveState = str(svaepass['state'])
+    if saveState == 'normal': 
         val1 = tmsg.askyesnocancel('Error','You have not saved your password,\ndo you want to save it?')
-        if val1 == 'Yes':
+        if val1 == True:
             save()
-        elif val1 == 'No':
+            exit()
+        elif val1 == False:
             exit()
     else:
         value = tmsg.askyesno('Exit','You want to Exit?')
+        print(value)
         if value == True:
             exit()
         else: pass
@@ -136,7 +140,7 @@ if __name__ == "__main__":
     endfrm.pack(side=BOTTOM, fill=X)
     frm4 = Frame(root,bg='orange')
     Button(frm4,text='About us',bg='gray', command=About).pack(side=LEFT,padx=5,pady=2)
-    Button(frm4,text='Exit',bg='gray', command=exi).pack(side=LEFT,padx=5,pady=2)
+    b1 = Button(frm4,text='Exit',bg='gray',command=exi).pack(side=LEFT,padx=5,pady=2)
     Button(frm4,text='Help',bg='gray', command=hel).pack(side=LEFT,padx=5,pady=2)
     frm4.pack(side=BOTTOM,fill=X,padx=120)
 
