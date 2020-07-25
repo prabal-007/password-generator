@@ -22,25 +22,23 @@ def generate():
         pass4 = ''.join(random.sample(raw4,lent))
         pass5 = ''.join(random.sample(raw5,lent))
         strength = staVar.get()
-        if lent<4:
+        if lent<6:
             staVar.set('weak')
             passvar.set('to weak!')
             tmsg.askretrycancel('weak pass','Youe pass strength is too weak!\ntry a strong one.')
-        elif 3<lent<7:
+        elif 5<lent<7:
             staVar.set('weak')
             passvar.set(pass3)
-        elif 6<lent<11:
+        elif 7<lent<12:
             staVar.set('good')
             lis = [pass4,pass5]
             passvar.set(random.choice(lis))
-        elif 10<lent<16:
+        elif 11<lent<16:
             staVar.set('strong')
             passvar.set(pass2)
-        elif 15<lent<23:
+        else:
             staVar.set('very strong')
             passvar.set(pass1)
-        else:
-            passvar.set('Error')
         svaepass.config(state=ACTIVE)
     except Exception as e:
         tmsg.showerror('Error','Please enter revalent password length!')
@@ -122,8 +120,8 @@ if __name__ == "__main__":
     frm1.pack()
     frm2 = Frame(root,bg='orange')
     paslen = Label(frm2,text='Pass Length - ', font='arial 10 bold', bg='orange').pack(side=LEFT,padx=10,pady=10)
-    lenVer = StringVar()
-    Entry(frm2,textvariable=lenVer,font='arial 10', relief=SUNKEN, width='8').pack(side=LEFT,padx=5)
+    lenVer = Spinbox(frm2, from_=3, to_=23, width=5, relief=SUNKEN)
+    lenVer.pack(side=LEFT,padx=5)
     frm2.pack()
     Label(root,text='*pass length must be in range 4-22.', fg='red', bg='orange').pack()
     Button(root,text='Generate',font='arial 10 bold',pady='2', relief=RAISED,activebackground='gold', command=generate).pack(pady=5)
