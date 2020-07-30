@@ -61,6 +61,7 @@ def save():
             with open('pass-gen.txt','a') as f:
                 f.write(f'{orgn} - {passvar.get()}\n')
         svaepass.config(state=DISABLED)
+        
 def About():
     root3=Tk()
     def exi():
@@ -75,6 +76,7 @@ def About():
     cont.pack(pady='20')
     Button(root3,text='Exit',bg='gray',font='arial 10 bold',command=exi).pack()
     root3.mainloop()
+    
 def hel():
     root2=Tk()
     def exi():
@@ -88,8 +90,8 @@ def hel():
     cont=Label(root2, text='Step-0. Enter organisation for which you want\n to generate password for.\nStep-1. Enter length of your password.\nstep-2. click Generate botton\nStep-3. Click "Save" button.\n(All the saved passwords are saved in pass-gene.txt file.\nExample : org_name - password)', font='arial 12 bold',padx='5',pady='5')
     cont.pack(pady='20')
     Button(root2,text='Exit',bg='gray',font='arial 10 bold',command=exi).pack()
-
     root2.mainloop()
+    
 def exi():
     # exit()
     saveState = str(svaepass['state'])
